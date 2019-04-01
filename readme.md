@@ -4,6 +4,8 @@ Introduction
 This is a small demonstration of using Kivy on a single-board computer
 to interact with an external microcontroller on a serial port connection.
 
+![screenshot](./screenshot.png)
+
 
 Installation
 ============
