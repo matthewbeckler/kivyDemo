@@ -1,0 +1,42 @@
+# Kivy has a cool way to separate the user-interface from the controller code
+# This "kv" file defines the UI widgets and how they tie in into the python
+# "Property" objects. This provides some isolation between the presentation layer
+# and the business logic layer. Theoretically you could have a UI designer work
+# on the KV file while someone else works on the underlying controller logic.
+#
+# The HUE slider needs to be able to update the hue Property when it's changed
+# The other three sliders need to be bound to their Properties so they automatically update when new serial data is received
+
+<ArduinoDemo>:
+    cols: 2
+    rows: 4
+
+    hue: hue_slider.value  # This says update the hue property of ArduinoDemo if hue_slider.value changes
+
+    Label:
+        text: 'LED Hue (%d):' % root.hue
+    Slider:
+        range: (0, 255)
+        id: hue_slider   # This is needed so that the binding above has a name
+        # no "value: hue" because we don't need the slider to update itself based on the hue property
+
+    Label:
+        text: 'Potentiometer value: %d / 1023 (%2.2f%%)' % (int(root.pot), int(root.pot) / 10.23)
+    Slider:
+        range: (0, 1024)
+        value: root.pot
+        disabled: True
+
+    Label:
+        text: 'Temperature: %d C' % int(root.temp)
+    Slider:
+        range: (-30, 100)
+        value: root.temp
+        disabled: True
+
+    Label:
+        text: 'Relative humidity: %d%%' % int(root.humidity)
+    Slider:
+        range: (0, 100)
+        value: root.humidity
+        disabled: True

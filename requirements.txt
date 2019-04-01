@@ -1,0 +1,4 @@
+Cython==0.28.2
+kivy
+pyserial
+pygame
